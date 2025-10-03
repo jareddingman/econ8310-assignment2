@@ -14,7 +14,7 @@ X = data.drop(columns=columns_to_drop)
 
 x, xt, y, yt = train_test_split(X, Y, test_size=0.2)
 
-model = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.4, objective='binary:logistic')
+model = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.4, objective='binary:hinge')
 
 y = y.to_frame()
 
