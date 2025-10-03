@@ -20,6 +20,7 @@ y = y.to_frame()
 
 modelFit = model.fit(x, y)
 
-pred = model.predict(xt)
+pred1 = model.predict(xt)
+pred = pred1.flatten().tolist()
 
 print(accuracy_score(yt, pred)*100)
