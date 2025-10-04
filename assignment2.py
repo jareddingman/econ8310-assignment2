@@ -24,8 +24,8 @@ y = y.to_frame()
 
 modelFit = model.fit(x, y)
 
-pred_probs = model.predict_proba(xt)[:, 1]
-pred = pred_probs.astype(float).tolist()
+pred = model.predict_proba(xt)[:, 1].astype(float).tolist()
+
 
 
 # pred1 = modelFit.predict(xt)
@@ -33,4 +33,3 @@ pred = pred_probs.astype(float).tolist()
 
 
 
-print(accuracy_score(yt, pred)*100)
