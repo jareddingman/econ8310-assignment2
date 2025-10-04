@@ -6,8 +6,9 @@ from xgboost import XGBClassifier
 
 data = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv")
 Y = data['meal']
+
 # make sure you drop a column with the axis=1 argument
-columns_to_drop = ['id', 'DateTime', 'meal']
+columns_to_drop = ['id', 'DateTime']
 X = data.drop(columns=columns_to_drop, axis=1)
 
 
