@@ -18,7 +18,7 @@ x, xt, y, yt = train_test_split(X, Y, test_size=1000)
 
 #0/ len(data)
 
-model = XGBClassifier(n_estimators=1000, max_depth=10, learning_rate=0.2, objective='binary:logistic', eval_metric = 'logloss')
+model = XGBClassifier(n_estimators=2000, max_depth=8, learning_rate=0.1, subsample=.9, colsample_bytree=.8, objective='binary:logistic', eval_metric = 'logloss')
 
 y = y.to_frame()
 
