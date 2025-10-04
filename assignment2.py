@@ -18,18 +18,19 @@ x, xt, y, yt = train_test_split(X, Y, test_size=1000)
 
 #0/ len(data)
 
-model = XGBClassifier(n_estimators=1000, max_depth=10, learning_rate=0.2, objective='binary:logistic')
+model = XGBClassifier(n_estimators=1000, max_depth=10, learning_rate=0.2, objective='binary:logistic', eval_metric = 'logloss')
 
 y = y.to_frame()
 
 modelFit = model.fit(x, y)
 
 pred_probs = model.predict_proba(xt)[:, 1]
+pred = pred_probs.astype(float).tolist()
+
 
 # pred1 = modelFit.predict(xt)
 # pred = pred1.flatten().tolist()
 
-pred = pred_probs.astype(float).tolist()
 
 
 print(accuracy_score(yt, pred)*100)
