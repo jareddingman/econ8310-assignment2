@@ -13,17 +13,13 @@ X = data.drop(columns=columns_to_drop, axis=1)
 
 
 
-x, xt, y, yt = train_test_split(X, Y, test_size=0.07051) #the test size is to get 1000
+x, xt, y, yt = train_test_split(X, Y, test_size=1000/ len(data)) 
 
-model = XGBClassifier(n_estimators=100, max_depth=4, learning_rate=0.4, objective='binary:logistic')
+model = XGBClassifier(n_estimators=1000, max_depth=10, learning_rate=0.2, objective='binary:logistic')
 
 y = y.to_frame()
 
 modelFit = model.fit(x, y)
 
-pred1 = model.predict(xt)
+pred1 = modelFit.predict(xt)
 pred = pred1.flatten().tolist()
-#not workng rn bc length is not 1000
-
-print(accuracy_score(yt, pred)*100)
-
