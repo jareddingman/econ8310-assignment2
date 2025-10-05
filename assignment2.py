@@ -5,10 +5,10 @@ from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
 
 data = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv")
-Y = data['meal']
 
+Y = data['meal']
 # make sure you drop a column with the axis=1 argument
-columns_to_drop = ['id', 'DateTime']
+columns_to_drop = ['id', 'DateTime', 'meal']
 X = data.drop(columns=columns_to_drop, axis=1)
 
 
@@ -20,11 +20,18 @@ model = XGBClassifier(n_estimators=1100,
                       max_depth=8, 
                       learning_rate=0.1,
                       min_child_weight=4,
-                      objective='binary:hinge')
+                      objective='binary:logistic')
 
 
 modelFit = model.fit(x, y)
 
 
-pred1 = modelFit.predict(xt)
+# pred1 = modelFit.predict(xt)
+# pred = pred1.flatten().tolist()
+
+pred1 = modelFit.predict_proba(xt)[:, 1]
 pred = pred1.flatten().tolist()
+
+
+
+print(accuracy_score(yt, pred)*100)
