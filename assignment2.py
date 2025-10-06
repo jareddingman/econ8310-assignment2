@@ -15,14 +15,19 @@ X = data.drop(columns=columns_to_drop, axis=1)
 
 x, xt, y, yt = train_test_split(X, Y, test_size=1000, random_state=67) 
 
-from sklearn.ensemble import RandomForestClassifier
 
-model = RandomForestClassifier(n_estimators=3000, 
-                               max_depth=5, 
-                               n_jobs = -1,
-                              min_samples_leaf=2,
-                              min_samples_split=4,
-                            	random_state=67)
+model = XGBClassifier(n_estimators=6000, 
+                      max_depth=8, 
+                      learning_rate=0.2,
+                      max_cat_threshold=40,
+                      objective='binary:logistic')
+
+
 modelFit = model.fit(x, y)
-pred1 = model.predict(xt)
-pred = pred1.tolist()
+
+
+pred1 = modelFit.predict(xt)
+pred = pred1.flatten().tolist()
+
+
+
