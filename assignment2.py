@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 data = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv")
+preddata = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3test.csv")
 
 
 Y = data['meal']
@@ -11,23 +12,27 @@ Y = data['meal']
 columns_to_drop = ['id', 'DateTime', 'meal']
 X = data.drop(columns=columns_to_drop, axis=1)
 
+X_pred = preddata.drop(columns=['id', 'DateTime', 'meal'], axis=1)
 
 
-x, xt, y, yt = train_test_split(X, Y, test_size=1000, random_state=67) 
+x, xt, y, yt = train_test_split(X, Y, test_size=.2, random_state=67) 
 
 
-model = XGBClassifier(n_estimators=10000, 
+model = XGBClassifier(n_estimators=6000, 
                       max_depth=8, 
                       learning_rate=0.2,
-                      max_cat_threshold=10,
+                      max_cat_threshold=40,
                       objective='binary:logistic')
 
 
 modelFit = model.fit(x, y)
 
 
-pred1 = modelFit.predict(xt)
-pred = pred1.flatten().tolist()
+# pred1 = modelFit.predict(xt)
+# pred = pred1.flatten().tolist()
+
+newpred=model.predict(X_pred)
+pred = newpred.tolist()
 
 
 
