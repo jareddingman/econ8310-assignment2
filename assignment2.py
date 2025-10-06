@@ -24,5 +24,5 @@ model = RandomForestClassifier(n_estimators=1500,
                               min_samples_split=4,
                             	random_state=67)
 modelFit = model.fit(x, y)
-pred = model.predict(xt)
-
+pred1 = model.predict(xt)
+pred = pred1.tolist()
