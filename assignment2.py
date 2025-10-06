@@ -16,7 +16,7 @@ X = data.drop(columns=columns_to_drop, axis=1)
 x, xt, y, yt = train_test_split(X, Y, test_size=1000, random_state=67) 
 
 
-model = XGBClassifier(n_estimators=1000, 
+model = XGBClassifier(n_estimators=10000, 
                       max_depth=8, 
                       learning_rate=0.2,
                       max_cat_threshold=10,
