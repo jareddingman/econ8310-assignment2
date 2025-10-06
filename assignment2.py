@@ -5,6 +5,7 @@ from xgboost import XGBClassifier
 
 data = pd.read_csv("https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv")
 
+
 Y = data['meal']
 # make sure you drop a column with the axis=1 argument
 columns_to_drop = ['id', 'DateTime', 'meal']
@@ -24,3 +25,4 @@ model = RandomForestClassifier(n_estimators=1500,
                             	random_state=67)
 modelFit = model.fit(x, y)
 pred = model.predict(xt)
+
